@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAHARAK | Transporte inteligente</title>
+<style>
+:root{--navy:#071b35;--navy2:#0c294b;--blue:#1478f8;--blue2:#eaf3ff;--ink:#12223d;--muted:#66758d;--line:#dce6f2;--green:#12a66a;--red:#ef4444;--bg:#f3f7fc}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:#fff;font-weight:700}button.secondary{background:#e8f1ff;color:#1559ad;border:1px solid #cfe1fb}button.danger{background:#fee2e2;color:#b91c1c}button:focus,input:focus,select:focus{outline:2px solid #85baff;outline-offset:2px}
+.topbar{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:22px;padding:0 24px 0 286px;position:sticky;top:0;z-index:5}.brand-mobile{display:none}.search{display:flex;max-width:600px;flex:1}.search input{width:100%;border:1px solid var(--line);border-radius:9px 0 0 9px;padding:12px}.search button{border-radius:0 9px 9px 0}.top-user{margin-left:auto;white-space:nowrap;font-size:13px}.sidebar{position:fixed;inset:0 auto 0 0;width:266px;background:linear-gradient(180deg,var(--navy),#031225);color:#fff;padding:22px 14px;z-index:8;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:12px;padding:0 8px 28px;border-bottom:1px solid #233b59}.brand-icon{font-size:34px;color:#48b8ff}.brand strong{display:block;font-size:23px;letter-spacing:1px}.brand small{color:#b9cce2}.nav{display:grid;gap:7px;margin-top:22px}.nav button{background:transparent;color:#d9e7f8;text-align:left;padding:14px 13px;border-radius:8px;font-weight:500}.nav button.active,.nav button:hover{background:#1675e8;color:#fff}.sidebar-foot{margin-top:auto;border-top:1px solid #233b59;padding:18px 8px;color:#bcd0e6;font-size:12px;line-height:1.5}.main{margin-left:266px}.hero{height:170px;background:linear-gradient(90deg,rgba(4,22,43,.96),rgba(4,22,43,.64)),url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1600&q=85') center 54%/cover;color:#fff;padding:25px 34px;display:flex;flex-direction:column;justify-content:center}.hero h1{margin:0;font-size:38px}.hero p{margin:5px 0 16px;font-size:18px;color:#e2edfa}.feature-row{display:flex;gap:24px;flex-wrap:wrap;font-size:12px}.feature-row span{display:flex;gap:7px;align-items:center}.content{padding:18px;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,.9fr);gap:14px}.left-col,.right-col{display:grid;align-content:start;gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:0 3px 12px rgba(23,54,92,.035);min-width:0}.card h2{font-size:16px;margin:0 0 14px}.muted{color:var(--muted)}.small{font-size:12px}.shipment-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.route-points{display:grid;gap:13px}.point{display:flex;gap:10px;align-items:center;font-size:13px}.dot{height:12px;width:12px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px #e0f7ec}.dot.red{background:var(--red);box-shadow:0 0 0 5px #fee2e2}.metric{background:#f5f9ff;border:1px solid #e3edf9;border-radius:10px;padding:13px}.metric .label{font-size:12px;color:var(--muted)}.metric strong{display:block;font-size:22px;margin:7px 0 3px}.map-card{padding:15px}.map-wrap{height:310px;position:relative;border-radius:9px;overflow:hidden;background:#e2f0df;border:1px solid #d6e5d8}.map-wrap iframe{width:100%;height:100%;border:0}.map-overlay{position:absolute;left:12px;top:12px;background:#fff;border-radius:8px;padding:9px 12px;box-shadow:0 2px 8px #0002;font-size:12px}.map-pin{position:absolute;right:25%;bottom:25%;font-size:25px;filter:drop-shadow(0 2px 2px #555);transition:right 1s ease,bottom 1s ease}.map-pin.moving{animation:truckPulse 1.2s ease-in-out infinite alternate}@keyframes truckPulse{from{transform:translateY(0)}to{transform:translateY(-5px)}}.map-footer{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.mini-metric{padding:9px;background:#f5f9ff;border-radius:8px;font-size:11px;color:var(--muted)}.mini-metric strong{display:block;color:var(--ink);font-size:14px;margin-top:5px}.recommend{margin-top:10px;background:#eff7ff;border:1px solid #d8eaff;padding:12px;border-radius:9px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px}.vehicle{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}.truck-photo{width:100%;height:100px;object-fit:cover;border-radius:8px}.details{display:grid;gap:10px;font-size:12px}.details strong{font-size:13px}.vehicle-bottom{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.dimension{background:#f5f9ff;border-radius:9px;padding:12px;font-size:12px}.dimension p{margin:8px 0}.truck-diagram{height:125px;display:grid;place-items:center;text-align:center;background:#f5f9ff;border-radius:9px;font-size:12px}.truck-diagram .truck{font-size:48px}.scan-layout{display:grid;grid-template-columns:1fr 110px;gap:12px}.scan-screen{background:#06152a;border-radius:9px;color:#75ff8a;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:185px;padding:10px}.scan-screen .box-art{font-size:55px}.scan-screen small{color:#b8ffc2}.progress{height:10px;border-radius:20px;background:#e5edf6;overflow:hidden;margin:7px 0 12px}.progress span{display:block;height:100%;width:35%;background:linear-gradient(90deg,#16a66a,#73d7a4);border-radius:20px;transition:width .25s}.cargo-row{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #edf1f6;font-size:12px}.cargo-row .cube{font-size:21px}.cargo-row .cargo-text{flex:1}.cargo-row small{display:block;color:var(--muted);margin-top:3px}.cargo-row strong{white-space:nowrap}.scan-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 18px 18px}.timeline{display:flex;justify-content:space-between;align-items:center;margin:15px 0 8px}.timeline .line{height:5px;background:linear-gradient(90deg,var(--green),var(--blue),#cbd5e1);flex:1;margin:0 10px;border-radius:5px}.security-list{display:grid;gap:10px;font-size:12px}.security-list span:before{content:'✓';color:var(--green);font-weight:bold;margin-right:8px}.status{display:inline-flex;align-items:center;gap:6px;color:var(--green);background:#e2f8ed;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:700}.status:before{content:'';height:7px;width:7px;border-radius:50%;background:currentColor}.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px}.hidden{display:none!important}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:grid;gap:6px;font-size:12px;color:var(--muted)}.field input,.field select{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.notice{padding:12px;border-radius:9px;background:#fff7e6;border:1px solid #ffe2a8;font-size:12px;color:#805d14;line-height:1.5}.toast{position:fixed;right:20px;bottom:20px;background:#102744;color:white;padding:13px 18px;border-radius:10px;box-shadow:0 6px 22px #0003;z-index:20;max-width:340px}.client-dest{background:#f5f9ff;padding:12px;border-radius:9px;font-size:13px;line-height:1.7}
+@media(max-width:1100px){.content{grid-template-columns:1fr}.right-col{grid-template-columns:1fr 1fr}.right-col .scan-card{grid-column:1/-1}.bottom-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.sidebar{width:72px;padding:16px 8px}.brand{justify-content:center;padding:0 0 20px}.brand div:last-child,.nav .nav-label,.sidebar-foot{display:none}.brand strong{font-size:0}.brand-icon{font-size:30px}.nav button{text-align:center;font-size:0;padding:14px 4px}.nav button::first-letter{font-size:20px}.main{margin-left:72px}.topbar{padding:0 12px;height:62px}.top-user{display:none}.hero{padding:22px;height:auto;min-height:165px}.hero h1{font-size:30px}.feature-row{gap:10px}.content{padding:10px}.shipment-grid{grid-template-columns:1fr}.map-wrap{height:270px}.map-footer{grid-template-columns:repeat(2,1fr)}.right-col{grid-template-columns:1fr}.right-col .scan-card{grid-column:auto}.bottom-grid{grid-template-columns:1fr;padding:0 10px 10px}.vehicle{grid-template-columns:120px 1fr}.scan-layout{grid-template-columns:1fr 95px}.card{padding:13px}.recommend{align-items:flex-start;flex-direction:column}.recommend button{width:100%}}
+@media(max-width:420px){.vehicle{grid-template-columns:1fr}.truck-photo{height:130px}.vehicle-bottom{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.scan-layout{grid-template-columns:1fr}.scan-screen{min-height:125px}.scan-screen .box-art{font-size:38px}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand"><div class="brand-icon">🚚</div><div><strong>VAHARAK</strong><small>Tu carga, siempre en camino</small></div></div>
+  <nav class="nav">
+    <button class="active" data-section="inicio">🏠 <span class="nav-label">Inicio</span></button>
+    <button data-section="seguimiento">📍 <span class="nav-label">Seguimiento en tiempo real</span></button>
+    <button data-section="envios">📦 <span class="nav-label">Mis envíos</span></button>
+    <button data-section="escaner">▣ <span class="nav-label">Escáner de carga</span></button>
+    <button data-section="rutas">🛣️ <span class="nav-label">Rutas y tráfico</span></button>
+    <button data-section="reportes">📋 <span class="nav-label">Reportes</span></button>
+    <button data-section="configuracion">⚙️ <span class="nav-label">Configuración</span></button>
+  </nav>
+  <div class="sidebar-foot">🛡️ VAHARAK SECURE<br>Tu carga protegida<br>en todo momento</div>
+</aside>
+
+<header class="topbar">
+  <div class="brand-mobile"><b>VAHARAK</b></div>
+  <form class="search" id="searchForm"><input id="searchInput" placeholder="Ingresa número de guía, placa o destino..." aria-label="Buscar envío"><button type="submit">⌕</button></form>
+  <div class="top-user">🔔 &nbsp; 👤 <b>Usuario</b><br><span class="muted">Cliente / Empresa</span></div>
+</header>
+
+<main class="main">
+<section class="hero">
+  <h1>Vaharak</h1><p>Transporte inteligente, seguro y eficiente</p>
+  <div class="feature-row"><span>📍 Seguimiento en tiempo real</span><span>🛣️ Rutas optimizadas</span><span>📦 Control de carga</span><span>🔒 Seguridad antirrobo</span></div>
+</section>
+
+<div class="content" id="dashboard">
+  <div class="left-col">
+    <section class="card">
+      <h2>Información del envío</h2>
+      <div class="shipment-grid">
+        <div class="route-points">
+          <div class="point"><span class="dot"></span><div><span class="muted small">Origen</span><br><strong id="originText">Funza, Cundinamarca</strong></div></div>
+          <div class="point"><span class="dot red"></span><div><span class="muted small">Destino</span><br><strong id="destinationText">Medellín, Antioquia</strong></div></div>
+        </div>
+        <div class="metric"><span class="label">◷ Tiempo estimado de llegada</span><strong id="etaText">10 h 45 min</strong><span class="small muted">Estimación demostrativa</span></div>
+        <div class="metric"><span class="label">🛣 Distancia total</span><strong id="distanceText">406 km</strong><span class="status">Ruta recomendada</span></div>
+      </div>
+    </section>
+
+    <section class="card map-card" id="trackingCard">
+      <div class="section-title"><h2>Ubicación del vehículo</h2><span class="status" id="routeStatus">En ruta · Demo</span></div>
+      <div class="map-wrap">
+        <iframe title="Mapa de referencia Funza a Medellín" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-75.75%2C4.4%2C-73.5%2C6.8&layer=mapnik"></iframe>
+        <div class="map-overlay">📍 <b>Mapa de referencia</b><br><span class="muted">GPS real no conectado</span></div>
+        <div class="map-pin">🚚</div>
+      </div>
+      <div class="map-footer">
+        <div class="mini-metric">Estado de seguimiento<strong id="gpsDemoStatus">GPS simulado activo</strong></div>
+        <div class="mini-metric">Última actualización<strong id="gpsUpdated">Ahora</strong></div>
+        <div class="mini-metric">Placa del vehículo<strong id="plateMap">JXK-732</strong></div>
+        <div class="mini-metric">Conductor<strong id="driverMap">Carlos Andrés López</strong></div>
+        <div class="mini-metric">Ubicación reportada<strong id="currentLocation">La Dorada, Caldas</strong></div>
+        <div class="mini-metric">Kilómetros recorridos<strong id="traveledText">198 km</strong></div>
+      </div>
+      <div class="recommend"><div>💡 <b>Mejor ruta para evitar trancones</b><br><span id="routeAdvice">Ruta sugerida: Autopista Medellín – Bogotá. Verifica el tráfico en vivo antes de salir.</span></div><button id="alternativeRoute">Ver ruta alternativa</button></div>
+    </section>
+
+    <section class="card" id="enviosPanel">
+      <div class="section-title"><h2>Consulta del cliente</h2><span class="status">Disponible</span></div>
+      <p class="muted small">El cliente puede consultar el origen, destino y estado del pedido con los datos de esta demostración.</p>
+      <div class="client-dest"><b>Origen:</b> <span id="clientOrigin">Funza, Cundinamarca</span><br><b>Destino:</b> <span id="clientDestination">Medellín, Antioquia</span><br><b>Estado:</b> <span id="clientStatus">En camino</span></div>
+      <div class="form-grid" style="margin-top:12px">
+        <label class="field">Número de guía<input id="trackingCodeInput" value="VH-2026-001" placeholder="Ej. VH-2026-001"></label>
+        <label class="field">Consultar estado<select id="trackingStatusSelect"><option>En camino</option><option>En bodega</option><option>Entregado</option><option>En revisión</option></select></label>
+      </div>
+      <div class="scan-actions"><button class="secondary" id="clientRefresh">Actualizar consulta</button><button id="copyTracking">Copiar resumen del envío</button></div>
+    </section>
+  </div>
+
+  <div class="right-col">
+    <section class="card">
+      <h2>Vehículo y conductor</h2>
+      <div class="vehicle">
+        <img class="truck-photo" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80" alt="Camión de carga">
+        <div class="details"><div>Placa: <strong id="plateText">JXK-732</strong></div><div>Conductor: <strong id="driverText">Carlos Andrés López</strong></div><div>Teléfono: <strong id="phoneText">+57 300 123 4567</strong></div><div>Tipo: <strong>Camión de carga</strong></div></div>
+      </div>
+      <div class="vehicle-bottom">
+        <div class="dimension"><b>🚚 Medidas del camión</b><p>Largo: <strong id="lengthText">12,5 m</strong></p><p>Ancho: <strong id="widthText">2,6 m</strong></p><p>Alto: <strong id="heightText">4,0 m</strong></p><p>Capacidad: <strong id="capacityText">12.000 kg</strong></p></div>
+        <div class="truck-diagram"><div class="truck">🚛</div><b>Vista ilustrativa</b><span>12,5 m × 2,6 m × 4,0 m</span></div>
+      </div>
+    </section>
+
+    <section class="card scan-card" id="scannerPanel">
+      <div class="section-title"><h2>Escáner y control de carga</h2><span class="status">Activo · Demo</span></div>
+      <div class="scan-layout">
+        <div>
+          <div class="small">Espacio estimado disponible <b id="spaceText" style="float:right;color:var(--green)">35%</b></div>
+          <div class="progress"><span id="spaceBar"></span></div>
+          <div class="cargo-row"><span class="cube">📦</span><div class="cargo-text"><b>Cajas grandes</b><small>80 × 60 × 80 cm · 10 unidades</small></div><strong id="largeWeight">800 kg</strong></div>
+          <div class="cargo-row"><span class="cube">📦</span><div class="cargo-text"><b>Cajas pequeñas</b><small>60 × 40 × 40 cm · 25 unidades</small></div><strong id="smallWeight">250 kg</strong></div>
+          <div class="cargo-row"><span class="cube">⚖️</span><div class="cargo-text"><b>Peso total de la carga</b><small id="boxCount">35 cajas registradas</small></div><strong id="totalWeight">1.050 kg</strong></div>
+          <div class="cargo-row"><span class="cube">🔐</span><div class="cargo-text"><b>Capacidad máxima</b><small>Según ficha del vehículo</small></div><strong id="maxWeight">12.000 kg</strong></div>
+          <div class="scan-actions"><button id="toggleBoxForm">+ Registrar caja</button><button class="secondary" id="scanButton">Simular escaneo</button></div>
+          <div id="boxForm" class="form-grid hidden" style="margin-top:12px">
+            <label class="field">Tipo de caja<select id="boxType"><option value="pequena">Pequeña</option><option value="grande">Grande</option></select></label>
+            <label class="field">Cantidad<input id="boxQty" type="number" min="1" max="100" value="1"></label>
+            <label class="field">Peso por caja (kg)<input id="boxKg" type="number" min="0.1" step="0.1" value="10"></label>
+            <label class="field">Largo × ancho × alto (cm)<input id="boxDims" value="60 × 40 × 40"></label>
+            <div style="grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap"><button id="saveBox">Guardar caja</button><button class="secondary" id="cancelBox">Cancelar</button></div>
+          </div>
+        </div>
+        <div class="scan-screen"><small>ESCÁNER DE CARGA</small><div class="box-art">▦<br>📦</div><b id="scanState">Sistema listo</b><small>Vista ilustrativa</small></div>
+      </div>
+      <p class="small muted">El peso y las dimensiones se ingresan manualmente; para escaneo físico se necesita una cámara o sensor compatible.</p>
+    </section>
+  </div>
+</div>
+
+<div class="bottom-grid">
+  <section class="card">
+    <div class="section-title"><h2>¿Cuándo llega al destino?</h2><span class="status">Estimado</span></div>
+    <strong style="font-size:23px" id="etaBottom">10 h 45 min</strong><p class="small muted">Tiempo aproximado, no conectado al tráfico real.</p>
+    <div class="timeline"><span>🟢</span><div class="line"></div><span>🚚</span><div class="line"></div><span>📍</span></div>
+    <div class="section-title small"><span>Origen: Funza</span><span>198 km recorridos</span><span>Destino: Medellín</span></div>
+  </section>
+  <section class="card" id="routesPanel">
+    <div class="section-title"><h2>Rutas y tráfico</h2><span class="status" id="trafficStatus">Modo demostración</span></div>
+    <div class="security-list"><span id="routeName">Ruta sugerida: Autopista Medellín – Bogotá</span><span id="trafficTime">Tiempo estimado: 10 h 45 min</span><span id="trafficDistance">Distancia total: 406 km</span></div>
+    <div class="scan-actions"><button id="openMap">Abrir mapa</button><button class="secondary" id="nextRoute">Cambiar ruta sugerida</button></div>
+  </section>
+  <section class="card">
+    <div class="section-title"><h2>Mecanismo antirrobo</h2><span class="status" id="securityStatus">Demo activa</span></div>
+    <div class="security-list"><span>GPS: requiere dispositivo conectado</span><span>Alerta de salida de ruta: simulada</span><span>Registro de paradas y aperturas: no conectado</span><span>Bloqueo remoto: requiere hardware autorizado</span></div>
+    <div class="scan-actions"><button class="secondary" id="simulateAlert">Simular alerta de seguridad</button><button class="danger" id="clearAlert">Restablecer alerta</button></div>
+    <p class="small muted" id="securityMessage">No hay alertas simuladas activas.</p>
+  </section>
+</div>
+
+<section class="card" id="settingsPanel" style="margin:0 18px 20px">
+  <h2>Configuración del envío (demostración)</h2>
+  <div class="form-grid">
+    <label class="field">Origen<input id="originInput" value="Funza, Cundinamarca"></label>
+    <label class="field">Destino<input id="destinationInput" value="Medellín, Antioquia"></label>
+    <label class="field">Placa del camión<input id="plateInput" value="JXK-732"></label>
+    <label class="field">Nombre del conductor<input id="driverInput" value="Carlos Andrés López"></label>
+    <label class="field">Distancia estimada (km)<input id="distanceInput" type="number" min="1" value="406"></label>
+    <label class="field">Tiempo estimado<input id="etaInput" value="10 h 45 min"></label>
+  </div>
+  <div class="scan-actions"><button id="saveSettings">Guardar datos de demostración</button></div>
+  <div class="notice" style="margin-top:12px">Importante: esta página no envía datos a un servidor ni rastrea vehículos reales. Para producción se requiere backend, base de datos, permisos de ubicación, integración de mapas/tráfico y dispositivos GPS/sensores.</div>
+</section>
+<footer style="text-align:center;padding:10px 18px 25px;color:var(--muted);font-size:12px">© 2026 VAHARAK · Transporte inteligente, seguro y eficiente</footer>
+</main>
+
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<script>
+const $ = id => document.getElementById(id);
+let largeBoxes = 10, smallBoxes = 25, largeKg = 800, smallKg = 250, routeIndex = 0, alertActive = false;
+const routes = [
+  {name:"Autopista Medellín – Bogotá", distance:406, time:"10 h 45 min", advice:"Ruta sugerida: Autopista Medellín – Bogotá. Verifica el tráfico en vivo antes de salir."},
+  {name:"Ruta alternativa por Honda", distance:428, time:"11 h 20 min", advice:"Alternativa demostrativa por Honda. Comprueba cierres y condiciones antes de elegirla."},
+  {name:"Ruta alterna por vías principales", distance:439, time:"11 h 50 min", advice:"Ruta alternativa de referencia. La disponibilidad y el tráfico no están conectados en vivo."}
+];
+function toast(message){const el=$('toast');el.textContent=message;el.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.add('hidden'),3200)}
+function updateCargo(){
+  const total=largeKg+smallKg, count=largeBoxes+smallBoxes, capacity=12000;
+  const used=Math.min(100,Math.round(total/capacity*100)), available=100-used;
+  $('largeWeight').textContent=largeKg.toLocaleString('es-CO')+' kg';
+  $('smallWeight').textContent=smallKg.toLocaleString('es-CO')+' kg';
+  $('totalWeight').textContent=total.toLocaleString('es-CO')+' kg';
+  $('boxCount').textContent=count+' cajas registradas';
+  $('spaceText').textContent=available+'% (por peso)';
+  $('spaceBar').style.width=available+'%';
+  $('spaceBar').style.background=available<15?'#ef4444':'linear-gradient(90deg,#16a66a,#73d7a4)';
+  if(total>capacity){$('spaceText').textContent='¡Exceso de peso!';$('spaceText').style.color='#dc2626';}
+  else{$('spaceText').style.color=available<15?'#dc2626':'var(--green)';}
+}
+function updateRoute(){
+  const r=routes[routeIndex];
+  $('distanceText').textContent=r.distance+' km';$('distanceInput').value=r.distance;
+  $('etaText').textContent=r.time;$('etaBottom').textContent=r.time;$('etaInput').value=r.time;
+  $('routeAdvice').textContent=r.advice;$('routeName').textContent='Ruta sugerida: '+r.name;
+  $('trafficTime').textContent='Tiempo estimado: '+r.time;$('trafficDistance').textContent='Distancia total: '+r.distance+' km';
+}
+function saveSettings(){
+  const origin=$('originInput').value.trim(), dest=$('destinationInput').value.trim(), plate=$('plateInput').value.trim(), driver=$('driverInput').value.trim();
+  if(!origin||!dest||!plate||!driver){toast('Completa origen, destino, placa y conductor.');return}
+  $('originText').textContent=origin;$('clientOrigin').textContent=origin;
+  $('destinationText').textContent=dest;$('clientDestination').textContent=dest;
+  $('plateText').textContent=plate;$('plateMap').textContent=plate;
+  $('driverText').textContent=driver;$('driverMap').textContent=driver;
+  const dist=Math.max(1,Number($('distanceInput').value)||406);
+  $('distanceText').textContent=dist+' km';$('trafficDistance').textContent='Distancia total: '+dist+' km';
+  const eta=$('etaInput').value.trim()||'Por calcular';$('etaText').textContent=eta;$('etaBottom').textContent=eta;$('trafficTime').textContent='Tiempo estimado: '+eta;
+  toast('Datos de demostración actualizados.');
+}
+$('saveSettings').addEventListener('click',saveSettings);
+$('toggleBoxForm').addEventListener('click',()=> $('boxForm').classList.toggle('hidden'));
+$('cancelBox').addEventListener('click',()=> $('boxForm').classList.add('hidden'));
+$('boxType').addEventListener('change',()=>{
+  if($('boxType').value==='grande'){$('boxKg').value=80;$('boxDims').value='80 × 60 × 80'}
+  else{$('boxKg').value=10;$('boxDims').value='60 × 40 × 40'}
+});
+$('saveBox').addEventListener('click',()=>{
+  const qty=Math.floor(Number($('boxQty').value)), kg=Number($('boxKg').value);
+  if(!Number.isFinite(qty)||qty<1||qty>100||!Number.isFinite(kg)||kg<=0){toast('Ingresa una cantidad entre 1 y 100 y un peso válido.');return}
+  if($('boxType').value==='grande'){largeBoxes+=qty;largeKg+=qty*kg}
+  else{smallBoxes+=qty;smallKg+=qty*kg}
+  updateCargo();$('boxForm').classList.add('hidden');toast(`${qty} caja(s) registrada(s). Medidas indicadas: ${$('boxDims').value}.`);
+});
+$('scanButton').addEventListener('click',()=>{
+  $('scanState').textContent='Analizando carga…';
+  setTimeout(()=>{
+    $('scanState').textContent='Escaneo simulado ✓';
+    toast('Resultado de ejemplo: '+(largeBoxes+smallBoxes)+' cajas registradas, '+(largeKg+smallKg).toLocaleString('es-CO')+' kg. No se usó cámara ni sensor real.');
+  },900);
+  setTimeout(()=>$('scanState').textContent='Sistema listo',3500);
+});
+$('alternativeRoute').addEventListener('click',()=>{routeIndex=(routeIndex+1)%routes.length;updateRoute();toast('Se cambió la ruta de demostración.')});
+$('nextRoute').addEventListener('click',()=>{routeIndex=(routeIndex+1)%routes.length;updateRoute();toast('Ruta sugerida actualizada (datos de ejemplo).')});
+$('openMap').addEventListener('click',()=>window.open('https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=4.716%2C-74.212%3B6.244%2C-75.581','_blank','noopener'));
+$('simulateAlert').addEventListener('click',()=>{
+  alertActive=true;$('securityStatus').textContent='Alerta simulada';$('securityStatus').style.color='#b91c1c';$('securityStatus').style.background='#fee2e2';
+  $('securityMessage').textContent='⚠️ ALERTA DE PRUEBA: se ha simulado una salida de ruta. No se ha detectado un evento real.';
+  toast('Alerta de seguridad de demostración activada.');
+});
+$('clearAlert').addEventListener('click',()=>{
+  alertActive=false;$('securityStatus').textContent='Demo activa';$('securityStatus').style.color='';$('securityStatus').style.background='';
+  $('securityMessage').textContent='No hay alertas simuladas activas.';toast('Alerta simulada restablecida.');
+});
+$('clientRefresh').addEventListener('click',()=>{
+  $('clientStatus').textContent=alertActive?'Revisar alerta simulada':$('trackingStatusSelect').value;
+  toast('Guía '+$('trackingCodeInput').value+' consultada con datos de demostración.');
+});
+$('copyTracking').addEventListener('click',()=>{
+  const summary=`VAHARAK - Envío\nOrigen: ${$('originText').textContent}\nDestino: ${$('destinationText').textContent}\nPlaca: ${$('plateText').textContent}\nConductor: ${$('driverText').textContent}\nDistancia: ${$('distanceText').textContent}\nTiempo estimado: ${$('etaText').textContent}`;
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(summary).then(()=>toast('Resumen copiado.')).catch(()=>prompt('Copia el resumen:',summary));
+  else prompt('Copia el resumen:',summary);
+});
+$('searchForm').addEventListener('submit',e=>{
+  e.preventDefault();const q=$('searchInput').value.trim().toLowerCase();
+  if(!q){toast('Escribe una guía, placa o destino para buscar.');return}
+  const found=[$('plateText').textContent,$('destinationText').textContent,$('originText').textContent].some(v=>v.toLowerCase().includes(q));
+  toast(found?'Coincidencia encontrada en el envío de demostración.':'No se encontró coincidencia en los datos de ejemplo.');
+});
+document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const target=btn.dataset.section;
+  const ids={inicio:'dashboard',seguimiento:'trackingCard',envios:'enviosPanel',escaner:'scannerPanel',rutas:'routesPanel',reportes:'enviosPanel',configuracion:'settingsPanel'};
+  const el=$(ids[target]);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+updateCargo();updateRoute();
+
+// Simulación visual: mueve el icono y actualiza la hora; no representa GPS real.
+let gpsStep=0;
+setInterval(()=>{
+  gpsStep=(gpsStep+1)%5;
+  const pin=document.querySelector('.map-pin');
+  const positions=[['25%','25%'],['32%','31%'],['39%','36%'],['45%','42%'],['50%','47%']];
+  pin.style.right=positions[gpsStep][0];pin.style.bottom=positions[gpsStep][1];pin.classList.add('moving');
+  $('gpsUpdated').textContent=new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+  $('gpsDemoStatus').textContent='Simulación '+(gpsStep+1)+'/5';
+},5000);
+</script>
+</body>
+</html>
